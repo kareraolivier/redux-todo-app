@@ -1,0 +1,21 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "ft/todo",
+    "main",
+    "origin",
+    "todo-tool-tik"
+  ],
+  "parent": {
+    "ft/todo": "main",
+    "main": null,
+    "origin": "main",
+    "todo-tool-tik": "main"
+  },
+  "order": [
+    "main",
+    "ft/todo",
+    "origin",
+    "todo-tool-tik"
+  ]
+}
