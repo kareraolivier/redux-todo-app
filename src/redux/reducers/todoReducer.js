@@ -1,6 +1,7 @@
 import { TODOACTION } from "../action/actionType";
+const initalState = { todos: [] };
 
-const todoReducer = (state = { todos: [] }, action) => {
+const todoReducer = (state = initalState, action) => {
   switch (action.type) {
     //add todo
     case TODOACTION.ADD_TODO:
@@ -16,6 +17,7 @@ const todoReducer = (state = { todos: [] }, action) => {
             : todo
         ),
       };
+
     //delete todo
     case TODOACTION.DELETE_TODO:
       return {
