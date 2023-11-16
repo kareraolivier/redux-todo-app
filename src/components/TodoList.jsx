@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, completedTodo } from "../redux/action/actions";
-
+import { completedTodo, deleteTodo } from "../redux/todosSlice";
 const TodoList = () => {
-  let allTodos = useSelector((state) => state.todos.todos);
+  const allTodos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
   return (
@@ -20,7 +19,12 @@ const TodoList = () => {
               <div className="flex gap-4">
                 <button
                   onClick={() =>
-                    dispatch(completedTodo(todo.id, todo.isCompleted))
+                    dispatch(
+                      completedTodo({
+                        id: todo.id,
+                        isCompleted: todo.isCompleted,
+                      })
+                    )
                   }
                   className={`${
                     todo.isCompleted === true
@@ -39,7 +43,7 @@ const TodoList = () => {
               </div>
             </div>
           ))
-        : "No todo on your list"}
+        : "No todos on your list"}
     </div>
   );
 };
