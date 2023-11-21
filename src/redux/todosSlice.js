@@ -8,9 +8,9 @@ const todosSlice = createSlice({
       state.push(action.payload);
     },
     completedTodo: (state, action) => {
-      const todo = state.find((todo) => todo.id === action.payload.id);
+      const todo = state.find((todo) => todo.id === action.payload);
       if (todo) {
-        todo.isCompleted = !action.payload.isCompleted;
+        todo.isCompleted = !todo.isCompleted;
       }
     },
     deleteTodo: (state, action) => {

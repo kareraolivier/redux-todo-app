@@ -1,13 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import { completedTodo, deleteTodo } from "../redux/todosSlice";
+
 const TodoList = () => {
+
   const allTodos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
+  if (allTodos.length == 0) return "No todos on your list";
+
   return (
     <div className="text-lg font-semibold">
-      {allTodos.length !== 0
-        ? allTodos.map((todo) => (
+      {allTodos.map((todo) => (
             <div key={todo.id} className="flex gap-4 justify-between">
               <p
                 className={`${
@@ -20,10 +23,7 @@ const TodoList = () => {
                 <button
                   onClick={() =>
                     dispatch(
-                      completedTodo({
-                        id: todo.id,
-                        isCompleted: todo.isCompleted,
-                      })
+                      completedTodo(todo.id)
                     )
                   }
                   className={`${
@@ -43,7 +43,7 @@ const TodoList = () => {
               </div>
             </div>
           ))
-        : "No todos on your list"}
+        }
     </div>
   );
 };
