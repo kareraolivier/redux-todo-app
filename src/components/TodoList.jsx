@@ -1,45 +1,41 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, completedTodo } from "../redux/action/actions";
+import { completeTodo, deleteTodo } from "../redux/todosSlice";
 
 const TodoList = () => {
-  let allTodos = useSelector((state) => state.todos.todos);
+  const allTodos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+
+  if (allTodos.length == 0) return <p>No todos on your list</p>
 
   return (
     <div className="text-lg font-semibold">
-      {allTodos.length !== 0
-        ? allTodos.map((todo) => (
-            <div key={todo.id} className="flex gap-4 justify-between">
-              <p
-                className={`${
-                  todo.isCompleted === true && "text-gray-400 line-through"
-                } text-lg font-semibold `}
-              >
-                {todo.text}
-              </p>
-              <div className="flex gap-4">
-                <button
-                  onClick={() =>
-                    dispatch(completedTodo(todo.id, todo.isCompleted))
-                  }
-                  className={`${
-                    todo.isCompleted === true
-                      ? "text-yellow-600"
-                      : "text-green-600"
-                  } font-semibold`}
-                >
-                  {todo.isCompleted === true ? "completed" : "complete"}
-                </button>
-                <button
-                  onClick={() => dispatch(deleteTodo(todo.id))}
-                  className="font-semibold text-red-600"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))
-        : "No todo on your list"}
+      {allTodos.map((todo) => (
+        <div key={todo.id} className="flex gap-4 justify-between">
+          <p
+            className={`${
+              todo.isCompleted === true && "text-gray-400 line-through"
+            } text-lg font-semibold `}
+          >
+            {todo.text}
+          </p>
+          <div className="flex gap-4">
+            <button
+              onClick={() => dispatch(completeTodo(todo.id))}
+              className={`${
+                todo.isCompleted === true ? "text-yellow-600" : "text-green-600"
+              } font-semibold`}
+            >
+              {todo.isCompleted === true ? "completed" : "complete"}
+            </button>
+            <button
+              onClick={() => dispatch(deleteTodo(todo.id))}
+              className="font-semibold text-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

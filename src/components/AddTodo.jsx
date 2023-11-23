@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/action/actions";
+import { addTodo } from "../redux/todosSlice";
 
 const AddTodo = () => {
   const [text, setText] = useState("");
@@ -8,7 +8,7 @@ const AddTodo = () => {
 
   const handleSubmit = () => {
     if (text.trim() === "") return;
-    dispatch(addTodo({ id: Date.now(), text, isCompleted: false }));
+    dispatch(addTodo({ id: Date.now(), text: text, isCompleted: false }));
     setText("");
   };
 
