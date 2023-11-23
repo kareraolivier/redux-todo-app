@@ -7,7 +7,7 @@ const todosSlice = createSlice({
     addTodo: (state, action) => {
       state.push(action.payload);
     },
-    completedTodo: (state, action) => {
+    completeTodo: (state, action) => {
       const todo = state.find((todo) => todo.id === action.payload);
       if (todo) {
         todo.isCompleted = !todo.isCompleted;
@@ -19,5 +19,5 @@ const todosSlice = createSlice({
   },
 });
 
-export const { addTodo, completedTodo, deleteTodo } = todosSlice.actions;
+export const { addTodo, completeTodo, deleteTodo } = todosSlice.actions;
 export default todosSlice.reducer;
